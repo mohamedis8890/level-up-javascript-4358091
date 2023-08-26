@@ -16,7 +16,12 @@
 
   <script>
     // Write your code here
-    
+    function displayTime(){
+      const now = new Date().toLocaleTimeString();
+      
+      document.querySelector("#clock").textContent = now;
+    }
+    setInterval(displayTime, 1000);
   </script>
 </body>
 
