@@ -24,10 +24,32 @@ class Book {
   sell(numCopiesSold = 1) {
     this.numCopies -= numCopiesSold;
   }
-  
+
   restock(numCopiesStocked = 5) {
     this.numCopies += numCopiesStocked;
   }
 }
 
 // Write your code here
+
+class TechBook extends Book {
+  constructor(title, author, ISBN, numCopies, edition) {
+    super(title, author, ISBN, numCopies);
+    this.edition = edition;
+  }
+
+  getEdition() {
+    return `This is the ${this.edition} edition ot the book.`;
+  }
+}
+
+const chaos = new TechBook(
+  "Chaos Theory",
+  "James Gleick",
+  "105-489",
+  10,
+  "fifth"
+);
+
+console.log(chaos.availability);
+console.log(chaos.getEdition());
