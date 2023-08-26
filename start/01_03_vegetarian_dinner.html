@@ -35,6 +35,16 @@
     ]
     // Write your code here
 
+    const vegetarianDishes = menu.filter(dish=> dish.isVegetarian === true);
+
+    vegetarianDishes.forEach(dish=> {
+      const item = document.createElement('li');
+      item.innerText=dish.name;
+      document.getElementById("menu").appendChild(item);
+    }
+    )
+
+    console.log(vegetarianDishes)
   </script>
 </body>
 
