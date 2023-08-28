@@ -1,23 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Train Generator</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Train Generator</title>
-</head>
+  <body>
+    <!-- To run this file right click the file in the navigation bar and select "Open with live server. Then open the developer tools in the browser and head to the console window."-->
 
-<body>
-  <!-- To run this file right click the file in the navigation bar and select "Open with live server. Then open the developer tools in the browser and head to the console window."-->
+    <!-- Use this element to get to the next stop-->
+    <button id="next-stop">Next Stop</button>
 
-  <!-- Use this element to get to the next stop-->
-  <button id="next-stop">Next Stop</button>
+    <script>
+      // Write your code here
+      const stations = [
+        "Poughkeepsie",
+        "Newburgh",
+        "Peekskill",
+        "Yonkers",
+        "Bronx",
+        "Grand Central",
+      ];
 
-  <script>
-    // Write your code here
+      function* trip(stations) {
+        for (let i in stations) {
+          yield stations[i];
+        }
+      }
 
-  </script>
-</body>
+      const go = trip(stations);
+      const button = document.querySelector("#next-stop");
 
+      button.addEventListener("click", function () {
+        const { value, done } = go.next();
+        if (done) {
+          console.log("We made it!");
+          button.disabled = true;
+        } else console.log(value);
+      });
+    </script>
+  </body>
 </html>
