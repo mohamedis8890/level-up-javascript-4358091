@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Five Friends</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Five Friends</title>
-</head>
+  <body>
+    <!-- To run this file right click the file in the navigation bar and select "Open with live server. Then open the developer tools in the browser and head to the console window."-->
 
-<body>
-  <!-- To run this file right click the file in the navigation bar and select "Open with live server. Then open the developer tools in the browser and head to the console window."-->
+    <!-- Use this element to generate your friends -->
+    <div id="timeline"></div>
 
-  <!-- Use this element to generate your friends -->
-  <div id="timeline"></div>
+    <script>
+      // Write your code here
 
-  <script>
-    // Write your code here
-    
-  </script>
-</body>
+      async function findFriends() {
+        const response = await fetch("https://randomuser.me/api/?results=5");
+        const data = await response.json();
 
+        return data.results;
+      }
+
+      findFriends()
+        .then((friends) => {
+          const timeline = document.querySelector("#timeline");
+          friends.forEach((friend) => {
+            const node = document.createElement("img");
+            node.src = friend.picture.medium;
+            timeline.appendChild(node);
+          });
+        })
+        .catch((err) => console.log(err));
+    </script>
+  </body>
 </html>
